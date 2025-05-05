@@ -10,7 +10,10 @@
 <body>
 
     <body class="light-mode">
-        <button class="toggle-btn" onclick="toggleTheme()">🌙 Переключить тему</button>
+        <button class="toggle-btn" onclick="toggleTheme(); changeContent()">
+          <div id="content-1" class="content">🌙</div>
+          <div id="content-2" class="content hidden">☀️</div> 
+          Переключить тему</button>
         <div class="main" id="main">
             <div>
                 <div class="height-text">RolRex</div>
@@ -23,7 +26,7 @@
 
 
 
-        
+
         <script>
           function toggleTheme() {
             const body = document.body;
@@ -37,6 +40,9 @@
           if (savedTheme) {
             document.body.className = savedTheme;
           }
+
+
+
           const main = document.getElementById('main');
 
           document.addEventListener('mousemove', (e) => {
@@ -53,6 +59,23 @@
           document.addEventListener('mouseleave', () => {
             main.style.transform = `translate(0px, 0px)`;
           });
+
+
+          
+    // Функция для смены блоков
+    function changeContent() {
+      const content1 = document.getElementById('content-1');
+      const content2 = document.getElementById('content-2');
+
+      // Переключаем видимость блоков
+      if (content1.classList.contains('hidden')) {
+        content1.classList.remove('hidden');
+        content2.classList.add('hidden');
+      } else {
+        content1.classList.add('hidden');
+        content2.classList.remove('hidden');
+      }
+    }
         </script>
         
 </body>
