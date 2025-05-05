@@ -1,11 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="css/index.css">
+    <title>RolRex - начинающий, интересный проект</title>
+    <link rel="stylesheet" href="index.css">
+    <script src="index.js"></script>
 </head>
 <body>
-    <body></body>
+
+    <body class="light-mode">
+        <button class="toggle-btn" onclick="toggleTheme()">🌙 Переключить тему</button>
+        <div class="main" id="main">
+            <div>
+                <div class="height-text">RolRex</div>
+                <div class="bottom-main-text">Интересный сервер по майнкрафту.</div>
+            </div>
+        </div>
+      
+
+
+
+
+
+        
+        <script>
+          function toggleTheme() {
+            const body = document.body;
+            const isDark = body.classList.contains("dark-mode");
+            body.className = isDark ? "light-mode" : "dark-mode";
+            localStorage.setItem("theme", body.className);
+          }
+      
+          // Восстановление из localStorage
+          const savedTheme = localStorage.getItem("theme");
+          if (savedTheme) {
+            document.body.className = savedTheme;
+          }
+          const main = document.getElementById('main');
+
+          document.addEventListener('mousemove', (e) => {
+            const centerX = window.innerWidth / 5;
+            const centerY = window.innerHeight / 5;
+
+            const offsetX = (e.clientX - centerX) / 50; // Чем больше делитель — тем слабее сдвиг
+            const offsetY = (e.clientY - centerY) / 50;
+
+            main.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+          });
+
+          // Сброс при выходе мыши
+          document.addEventListener('mouseleave', () => {
+            main.style.transform = `translate(0px, 0px)`;
+          });
+        </script>
+        
+</body>
 </html>
